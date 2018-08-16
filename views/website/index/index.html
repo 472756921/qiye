@@ -50,6 +50,9 @@
                         <br/>
                         <br/>
                         <div id="tabContent"></div>
+                        <div>
+                            <button type="button" class="showmore" onclick="gou('en')">查看更多</button>
+                        </div>
                     </div><!--/.col-md-4-->
 
                     <div class="col-md-12 col-sm-12 wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="100ms">
@@ -67,7 +70,14 @@
                         <br/>
                         <br/>
                         <br/>
-                        <div id="tabContent_recruit"></div>
+                        <div id="tabContent_recruit" style="overflow: auto"></div>
+                        <div>
+                            <button type="button" class="showmore" onclick="gou('pr')">查看更多</button>
+                        </div>
+                        <br/>
+                        <br/>
+                        <br/>
+                        <br/>
                         <!--<div class="left wow fadeInDown">-->
                             <!--<span style="font-size: large;">离职公示</span><a  href="/quit_notice" class="pull-right a_color margin_right_10">更多</a>-->
                         <!--</div>-->
@@ -84,113 +94,129 @@
 
     <section id="services" class="service-item">
 	   <div class="container">
-            <div class="center wow fadeInDown">
-                <h2>我们的服务</h2>
-                <p class="lead">我们的服务我们的服务我们的服务我们的服务，《详情见江西车协APP或微信公众》</p>
-            </div>
+           <h2 style="color: #fff;text-align: center;font-size: 24px">关于我们</h2>
+           <br/>
+           <br/>
+           <br/>
+           <div class="aboutBkC">
+           　　<p>工业生产平稳，结构持续优化。7月，全国规模以上工业增加值同比实际增长6.0%，增速与上月持平。工业创新加快。1—7月，高技术制造业、装备制造业、战略性新兴产业增加值同比分别增长11.6%、9.0%和8.6%，分别快于规模以上工业5.0、2.4和2.0个百分点。</p>
+                <p>服务业持续发展，拉动作用增强。1—7月，全国服务业生产指数同比增长8.0%，增速与上半年持平；其中，信息传输、软件和信息技术服务业，租赁和商务服务业同比分别增长37.3%和11.2%。</p>
+                <p>服务业持续发展，拉动作用增强。1—7月，全国服务业生产指数同比增长8.0%，增速与上半年持平；其中，信息传输、软件和信息技术服务业，租赁和商务服务业同比分别增长37.3%和11.2%。</p>
+           </div>
+           <br/>
+           <br/>
+           <br/>
+           <br/>
+            <!--<div class="center wow fadeInDown">-->
+                <!--<h2>我们的服务</h2>-->
+                <!--<p class="lead">我们的服务我们的服务我们的服务我们的服务，《详情见江西车协APP或微信公众》</p>-->
+            <!--</div>-->
 
-           <div class="row">
+           <!--<div class="row">-->
 
-               <div class="col-sm-6 col-md-4">
-                   <div class="media services-wrap wow fadeInDown">
-                       <div class="pull-left">
-                           <img class="img-responsive" src="web/images/services/services1.png">
-                       </div>
-                       <div class="media-body">
-                           <h3 class="media-heading">车务代办</h3>
-                           <p>任何车务都可解决···任何车务都可解决···</p>
-                       </div>
-                   </div>
-               </div>
+               <!--<div class="col-sm-6 col-md-4">-->
+                   <!--<div class="media services-wrap wow fadeInDown">-->
+                       <!--<div class="pull-left">-->
+                           <!--<img class="img-responsive" src="web/images/services/services1.png">-->
+                       <!--</div>-->
+                       <!--<div class="media-body">-->
+                           <!--<h3 class="media-heading">车务代办</h3>-->
+                           <!--<p>任何车务都可解决···任何车务都可解决···</p>-->
+                       <!--</div>-->
+                   <!--</div>-->
+               <!--</div>-->
 
-               <div class="col-sm-6 col-md-4">
-                   <div class="media services-wrap wow fadeInDown">
-                       <div class="pull-left">
-                           <img class="img-responsive" src="web/images/services/services2.png">
-                       </div>
-                       <div class="media-body">
-                           <h3 class="media-heading">车险</h3>
-                           <p>在这儿享受最彻底的优惠···最彻底的优惠···</p>
-                       </div>
-                   </div>
-               </div>
+               <!--<div class="col-sm-6 col-md-4">-->
+                   <!--<div class="media services-wrap wow fadeInDown">-->
+                       <!--<div class="pull-left">-->
+                           <!--<img class="img-responsive" src="web/images/services/services2.png">-->
+                       <!--</div>-->
+                       <!--<div class="media-body">-->
+                           <!--<h3 class="media-heading">车险</h3>-->
+                           <!--<p>在这儿享受最彻底的优惠···最彻底的优惠···</p>-->
+                       <!--</div>-->
+                   <!--</div>-->
+               <!--</div>-->
 
-               <div class="col-sm-6 col-md-4">
-                   <div class="media services-wrap wow fadeInDown">
-                       <div class="pull-left">
-                           <img class="img-responsive" src="web/images/services/services3.png">
-                       </div>
-                       <div class="media-body">
-                           <h3 class="media-heading">车品商城</h3>
-                           <p>低价高品的车友商城···低价高品的车友商城···</p>
-                       </div>
-                   </div>
-               </div>
+               <!--<div class="col-sm-6 col-md-4">-->
+                   <!--<div class="media services-wrap wow fadeInDown">-->
+                       <!--<div class="pull-left">-->
+                           <!--<img class="img-responsive" src="web/images/services/services3.png">-->
+                       <!--</div>-->
+                       <!--<div class="media-body">-->
+                           <!--<h3 class="media-heading">车品商城</h3>-->
+                           <!--<p>低价高品的车友商城···低价高品的车友商城···</p>-->
+                       <!--</div>-->
+                   <!--</div>-->
+               <!--</div>-->
 
-               <div class="col-sm-6 col-md-4">
-                   <div class="media services-wrap wow fadeInDown">
-                       <div class="pull-left">
-                           <img class="img-responsive" src="web/images/services/services4.png">
-                       </div>
-                       <div class="media-body">
-                           <h3 class="media-heading">会员活动</h3>
-                           <p>我们的会员，享受尊贵服务··尊贵服务···</p>
-                       </div>
-                   </div>
-               </div>
+               <!--<div class="col-sm-6 col-md-4">-->
+                   <!--<div class="media services-wrap wow fadeInDown">-->
+                       <!--<div class="pull-left">-->
+                           <!--<img class="img-responsive" src="web/images/services/services4.png">-->
+                       <!--</div>-->
+                       <!--<div class="media-body">-->
+                           <!--<h3 class="media-heading">会员活动</h3>-->
+                           <!--<p>我们的会员，享受尊贵服务··尊贵服务···</p>-->
+                       <!--</div>-->
+                   <!--</div>-->
+               <!--</div>-->
 
-               <div class="col-sm-6 col-md-4">
-                   <div class="media services-wrap wow fadeInDown">
-                       <div class="pull-left">
-                           <img class="img-responsive" src="web/images/services/services5.png">
-                       </div>
-                       <div class="media-body">
-                           <h3 class="media-heading">违章代缴</h3>
-                           <p>违章不用操心费神，找车协··操心费神，找车协···</p>
-                       </div>
-                   </div>
-               </div>
+               <!--<div class="col-sm-6 col-md-4">-->
+                   <!--<div class="media services-wrap wow fadeInDown">-->
+                       <!--<div class="pull-left">-->
+                           <!--<img class="img-responsive" src="web/images/services/services5.png">-->
+                       <!--</div>-->
+                       <!--<div class="media-body">-->
+                           <!--<h3 class="media-heading">违章代缴</h3>-->
+                           <!--<p>违章不用操心费神，找车协··操心费神，找车协···</p>-->
+                       <!--</div>-->
+                   <!--</div>-->
+               <!--</div>-->
 
-               <div class="col-sm-6 col-md-4">
-                   <div class="media services-wrap wow fadeInDown">
-                       <div class="pull-left">
-                           <img class="img-responsive" src="web/images/services/services6.png">
-                       </div>
-                       <div class="media-body">
-                           <h3 class="media-heading">二手车</h3>
-                           <p>车友内部高性价比二手车，棒棒的···</p>
-                       </div>
-                   </div>
-               </div>
-           </div><!--/.row-->
+               <!--<div class="col-sm-6 col-md-4">-->
+                   <!--<div class="media services-wrap wow fadeInDown">-->
+                       <!--<div class="pull-left">-->
+                           <!--<img class="img-responsive" src="web/images/services/services6.png">-->
+                       <!--</div>-->
+                       <!--<div class="media-body">-->
+                           <!--<h3 class="media-heading">二手车</h3>-->
+                           <!--<p>车友内部高性价比二手车，棒棒的···</p>-->
+                       <!--</div>-->
+                   <!--</div>-->
+               <!--</div>-->
+           <!--</div>&lt;!&ndash;/.row&ndash;&gt;-->
 
         </div><!--/.container-->
     </section><!--/#services-->
 
-
-
-    <section id="conatcat-info">
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-8">
-                    <div class="media contact-info wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="100ms">
-                        <div class="pull-left">
-                            <i class="fa fa-phone"></i>
-                        </div>
-                        <div class="media-body">
-                            <h2>有任何问题?</h2>
-                            <p>请拨打12345678或者在留言板留言，工作人员会尽快和你取得联系！</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div><!--/.container-->
-    </section><!--/#conatcat-info-->
+    <!--<section id="conatcat-info">-->
+        <!--<div class="container">-->
+            <!--<div class="row">-->
+                <!--<div class="col-sm-8">-->
+                    <!--<div class="media contact-info wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="100ms">-->
+                        <!--<div class="pull-left">-->
+                            <!--<i class="fa fa-phone"></i>-->
+                        <!--</div>-->
+                        <!--<div class="media-body">-->
+                            <!--<h2>有任何问题?</h2>-->
+                            <!--<p>请拨打12345678或者在留言板留言，工作人员会尽快和你取得联系！</p>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        <!--</div>&lt;!&ndash;/.container&ndash;&gt;-->
+    <!--</section>&lt;!&ndash;/#conatcat-info&ndash;&gt;-->
 
 <%include ../common/include_footer.html%>
 <script type="text/javascript" src="http://localhost:3000/web/layui/layui.js"></script>
 <!--jquery修改首页导航样式-->
 <script>
+
+    function gou(val) {
+        window.location.href = '/' + val;
+    }
+
     //一般直接写在一个js文件中
     layui.use(['layer', 'form'], function(){
         var layer = layui.layer

@@ -6,6 +6,11 @@ module.exports = function(app) {
   //首页
   app.get('/', Index.index);
 
+  //产品页面
+  app.get('/pr', Index.pr);
+  //案例页面
+  app.get('/en', Index.en);
+
   //走进车协
   app.get('/company_intro', Index.company_intro);
   app.get('/culture', Index.culture);
@@ -70,8 +75,6 @@ module.exports = function(app) {
 
   //用户添加反馈信息
   app.post('/post_feedback', Index.post_feedback);
-
-
 
 
 

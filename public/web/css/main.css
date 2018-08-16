@@ -542,6 +542,7 @@ input.search-form:hover {
 #feature {
  /* background: #f2f2f2;*/
   background: #ffffff;
+  background: url("http://localhost:3000/web/images/peb.png");
   padding-bottom: 40px;
 }
 
@@ -561,6 +562,20 @@ input.search-form:hover {
 .feature-wrap .pull-left {
   margin-right: 25px;
 }
+.showmore{
+  display: block;
+  margin: 4rem auto 0;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: .4rem;
+  padding: .8rem 1.3rem;
+  color: #777;
+}
+.showmore:hover{
+  border: 1px solid #bc3030;
+  color: #cc3333;
+}
+
 
 .feature-wrap i{
   font-size: 48px;
@@ -657,9 +672,20 @@ input.search-form:hover {
 .recent-work-wrap:hover .overlay {
   opacity: 1;
 }
-
+.aboutBkC{
+  padding: 2.6rem 4rem;
+  background:rgba(255,255,255, 0.2);
+  border-radius: 1rem;
+  width: 900px;
+  color: #fff;
+  margin: 0 auto;
+}
+.aboutBkC p{
+  line-height: 2.2rem;
+  text-indent: 2.6rem;
+}
 #services {
-  background: #000 url(../images/services/bg_services.png);
+  background: #000 url(http://localhost:3000/web/images/abb.png);
   background-size: cover;
 }
 
@@ -2533,7 +2559,8 @@ shortcodes page css
 }
 
 /*设置新闻详情图片最大宽度不超过90%，同时居中显示*/
-#tabContent img{
+#tabContent{
+  overflow: auto;
   /*max-width:90%;*/
 }
 /*路径提示 12px大小字*/
@@ -2590,4 +2617,24 @@ shortcodes page css
     text-indent: 2rem;
     overflow: hidden;
     word-wrap:break-word;
+}
+.pls{
+    overflow: auto;
+    padding: 5rem 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.prtext{
+  color: #999;
+  text-indent: 2.6rem;
+}
+.enlistContent{
+  background: #eeeeee;border-radius: .6rem;overflow:hidden;
+}
+.enlistContent:hover{
+  cursor: pointer;
+  box-shadow: 0 2px 20px #999;
+}
+.enlistContent:hover .enlistContent-title{
+  color: #cc3333!important;
 }

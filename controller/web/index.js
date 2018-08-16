@@ -72,6 +72,14 @@ exports.quit_notice = function(req, res) {
 exports.contact_us = function(req, res) {
     res.render('website/contact_us/contact_us');
 };
+// 产品页面
+exports.pr = function(req, res) {
+    res.render('website/pr/pr');
+};
+// 案例页面
+exports.en = function(req, res) {
+    res.render('website/en/en');
+};
 
 
 // 首页获取6条新闻
