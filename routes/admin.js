@@ -20,6 +20,15 @@ module.exports = function(app) {
   //删除新闻
   app.post('/admin/news_del', Admin.del_one);
 
+  //添加工程案例
+  app.post('/admin/add_Ens', Admin.add_Ens);
+  //分页获取工程案例
+  app.post('/admin/get_Ens', Admin.get_Ens);
+  //查看工程案例详情
+  app.post('/admin/Ens_content', Admin.get_Ens_detail);
+  //删除工程案例
+  app.post('/admin/Ens_del', Admin.del_one);
+
   //添加招聘
   app.post('/admin/add_recruit', Admin.add_recruit);
   //获取招聘信息

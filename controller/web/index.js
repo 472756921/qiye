@@ -8,6 +8,8 @@ var News =mongoose.model('News');
 var Recruit =mongoose.model('Recruit');
 var Quit =mongoose.model('Quit');
 var Feedback=mongoose.model('Feedback');
+
+var Ens =mongoose.model('Ens');
 /*处理时间*/
 var Moment = require('moment');
 

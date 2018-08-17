@@ -11,6 +11,8 @@ var Quit =mongoose.model('Quit');
 var User=mongoose.model('User');
 var Feedback=mongoose.model('Feedback');
 
+var Ens =mongoose.model('Ens');
+
 // 首页
 exports.admin = function(req, res) {
     var isSuper='普通管理员'
@@ -84,8 +86,84 @@ exports.get_news_detail = function(req, res) {
         }
     });
 };
-
 //删除一个新闻
+exports.del_one= function(req, res) {
+    var id=req.body.id;
+    News.remove({_id:id},function(err,doc){
+        if(err){
+            res.json({"status":"error"});
+        }else{
+            res.json({"status":"success"})
+        }
+    });
+
+};
+
+// 添加工程案例
+exports.add_Ens = function(req, res) {
+    var title=req.body.title;
+    var time=req.body.time;
+    var from=req.body.from;
+    var category=req.body.category;
+    var content=req.body.content;
+
+    var data=new Ens(
+        {
+            title:title,
+            time:time,
+            from:from,
+            category:category,
+            content:content
+        }
+    );
+    data.save(function(err){
+        if(err){
+            res.json({"status":"error"})
+        }else{
+            res.json({"status":"success"});
+        }
+    });
+};
+// 分页获取工程案例
+exports.get_Ens = function(req, res) {
+    var curr=req.body.curr;
+    //每页大小为10
+    var query=Ens.find({});
+    query.skip((curr-1)*10);
+    query.limit(10);
+    //按照id添加的顺序倒序排列
+    query.sort({'_id': -1});
+    //计算分页数据
+    query.exec(function(err,rs){
+        if(err){
+            res.send(err);
+        }else{
+            //计算数据总数
+            Ens.find(function(err,result){
+                if(result.length%10>0){
+                    pages=result.length/10+1;
+                }else{
+                    pages=result.length/10;
+                }
+                jsonArray={data:rs,pages:pages};
+                res.json(jsonArray);
+            });
+        }
+    });
+};
+//获取工程案例详情
+exports.get_Ens_detail = function(req, res) {
+
+    var id=req.body.id;
+    Ens.findOne({_id:id},function(err,doc){
+        if(err){
+            res.json({"status":"error"});
+        }else{
+            res.json({"status":"success","data":doc.content})
+        }
+    });
+};
+//删除一个工程案例
 exports.del_one= function(req, res) {
     var id=req.body.id;
     News.remove({_id:id},function(err,doc){
