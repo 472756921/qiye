@@ -22,6 +22,7 @@ app.set('view engine', 'html');
 
 
 app.use(logger('dev'));
+app.use(bodyParser({limit: '1000mb'}))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -85,7 +86,7 @@ require('./routes/index')(app);
 /*官网后台做操作是需要，登录验证*/
 app.use(function(req,res,next){
   if (!req.session.user) {
-    if(req.url=="/login"||req.url=="/register"){
+    if(req.url=="/login"||req.url=="/register"||req.url=="/admin/get_Ens"||req.url=="/admin/get_Prs"){
       next();//如果请求的地址是登录则通过，进行下一个请求
     }
     else
@@ -113,7 +114,7 @@ app.use(function(req, res, next) {
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
     res.status(err.status || 500);
-    res.render('website/index/error', {
+    res.render('·site/index/error', {
       message: err.message,
       error: err
     });

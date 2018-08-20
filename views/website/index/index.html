@@ -49,7 +49,7 @@
                         <br/>
                         <br/>
                         <br/>
-                        <div id="tabContent"></div>
+                        <div style="overflow:auto;" id="tabContent_ers"></div>
                         <div>
                             <button type="button" class="showmore" onclick="gou('en')">查看更多</button>
                         </div>
@@ -70,7 +70,7 @@
                         <br/>
                         <br/>
                         <br/>
-                        <div id="tabContent_recruit" style="overflow: auto"></div>
+                        <div id="tabContent_Prs" style="overflow: auto"></div>
                         <div>
                             <button type="button" class="showmore" onclick="gou('pr')">查看更多</button>
                         </div>
@@ -208,11 +208,42 @@
         <!--</div>&lt;!&ndash;/.container&ndash;&gt;-->
     <!--</section>&lt;!&ndash;/#conatcat-info&ndash;&gt;-->
 
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">详情</h4>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-6" id="enImgContent"><img style="width: 100%;" src="http://iph.href.lu/100x260"/></div>
+                    <div class="col-md-6" style="font-size: 18px;color:#666;padding: 2rem 0" id="enTitle">【太阳能庭院灯款式2】3.5米太阳能庭院灯景区园区景观灯</div>
+                </div>
+                <br/>
+                <div style="font-size: 14px; color: #999;">
+                    <div id="sp" class="pull-left"> 地址：gaox</div>
+                    <div id="date" class="pull-right">时间：2012-12-12</div>
+                </div>
+                <br/>
+                <br/>
+                <div class="prtext" id="enContent"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
 <%include ../common/include_footer.html%>
 <script type="text/javascript" src="http://localhost:3000/web/layui/layui.js"></script>
 <!--jquery修改首页导航样式-->
 <script>
 
+    var listDataEn = '';
+    var listDataPr = '';
     function gou(val) {
         window.location.href = '/' + val;
     }
@@ -225,9 +256,11 @@
         //页面初始化的时候执行
         $(function (){
             $("#main a").css("color","#cc3333");
-            getNews();
-            getRecruits();
-            getQuits();
+            getEns();
+            getPrs();
+            // getNews();
+            // getRecruits();
+            // getQuits();
         });
 
         //从后台获取数据函数，获取6条新闻数据
@@ -296,7 +329,83 @@
             });
         };
 
-    });
+        //获取案例信息
+        function getEns(){
+            $.get("web/get_Ens",function(result){
+                //拼接html内容
+                var tabContent="";
+                //获取后台json数据
+                var mydata=result.datas;
+                listDataEn = mydata;
+                for(var i=0;i<mydata.length;i++){
+                    var content = $(mydata[i].content).text();
+                    var tempStr=
+                        '<div class="enlist" id='+mydata[i]._id+' data-toggle="modal" data-target="#myModal" onclick=getInof("'+mydata[i]._id+'")>'+
+                            '<img src="'+mydata[i].headimg+'" style="margin-top: 1rem;width: 220px;"/>'+
+                            '<div style="padding: 1rem;background-color: #FAFAFA;">' +
+                                '<a style="font-size: 16px" href="/news_detail/'+mydata[i]._id+'" class="a_color">'+mydata[i].title+'</a>' +
+                                '<div class="listTxt">'+content+'</div>' +
+                            '</div>'+
+                        '</div>'
+                    tabContent=tabContent+tempStr;
+                }
+                //将拼接好的数据填入#tabContent中
+                $("#tabContent_ers").html(tabContent);
+            });
+        };
+        //获取产品信息
+        function getPrs(){
+            $.get("web/get_Prs",function(result){
+                //拼接html内容
+                var tabContent="";
+                //获取后台json数据
+                var mydata=result.datas;
+                listDataPr = mydata;
+                for(var i=0;i<mydata.length;i++){
+                    var content = $(mydata[i].content).text();
+                    var tempStr=
+                        '<div class="enlist" id='+mydata[i]._id+' data-toggle="modal" data-target="#myModal" onclick=getInof2("'+mydata[i]._id+'")>'+
+                            '<img src="'+mydata[i].headimg+'" style="width: 220px"/>'+
+                            '<div style="padding: 1rem;background-color: #FAFAFA;">' +
+                                '<a style="font-size: 16px" href="/news_detail/'+mydata[i]._id+'" class="a_color">'+mydata[i].title+'</a>' +
+                                '<div class="listTxt">'+content+'</div>' +
+                            '</div>'+
+                        '</div>'
+                    tabContent=tabContent+tempStr;
+                }
+                //将拼接好的数据填入#tabContent中
+                $("#tabContent_Prs").html(tabContent);
+            });
+        };
 
+    });
+    function getInof(id){
+        var data = listDataEn.filter(function(_){
+            if(_._id == id) {
+                return _;
+            } else {
+                return
+            }
+        })
+        $('#enImgContent').html("<img width='100%' src='"+data[0].headimg+"' />");
+        $('#enTitle').html(data[0].title);
+        $('#sp').html(data[0].sgsp);
+        $('#date').html(data[0].time);
+        $('#enContent').html(data[0].content);
+    }
+    function getInof2(id){
+        var data = listDataPr.filter(function(_){
+            if(_._id == id) {
+                return _;
+            } else {
+                return
+            }
+        })
+        $('#enImgContent').html("<img width='100%' src='"+data[0].headimg+"' />");
+        $('#enTitle').html(data[0].title);
+        $('#sp').html(' ');
+        $('#date').html(' ');
+        $('#enContent').html(data[0].content);
+    }
 
 </script>

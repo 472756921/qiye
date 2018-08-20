@@ -2,6 +2,8 @@
  * Created by 1 on 2016/5/16.
  */
 // index page
+var fs = require('fs');
+
 
 var mongoose=require('mongoose');
 
@@ -12,6 +14,7 @@ var User=mongoose.model('User');
 var Feedback=mongoose.model('Feedback');
 
 var Ens =mongoose.model('Ens');
+var Prs =mongoose.model('Prs');
 
 // 首页
 exports.admin = function(req, res) {
@@ -101,28 +104,42 @@ exports.del_one= function(req, res) {
 
 // 添加工程案例
 exports.add_Ens = function(req, res) {
-    var title=req.body.title;
-    var time=req.body.time;
-    var from=req.body.from;
-    var category=req.body.category;
-    var content=req.body.content;
+    var title = req.body.title;
+    var time = req.body.time;
+    var sgsp = req.body.sgsp;
+    var headimg = req.body.headimg;
+    var content = req.body.content;
+    var d = Date.now();
+    var path = 'public/web/images/up/'+ d +'.png';    //从app.js级开始找
+    var name = '/web/images/up/'+ d +'.png';    //从app.js级开始找
+    var base64 = headimg.replace(/^data:image\/\w+;base64,/, "");//去掉图片base64码前面部分data:image/png;base64
+    var dataBuffer = new Buffer(base64, 'base64'); //把base64码转成buffer对象，
+    fs.writeFile(path,dataBuffer,function(err){//用fs写入文件
+        if(err){
+            console.log(err);
+            res.json({"status":"error"})
+        }else{
+            data.save(function(err){
+                if(err){
+                    res.json({"status":"error"})
+                }else{
+                    res.json({"status":"success"});
+                }
+            });
+        }
+    })
 
     var data=new Ens(
         {
             title:title,
             time:time,
-            from:from,
-            category:category,
+            headimg: name,
+            sgsp: sgsp,
             content:content
         }
     );
-    data.save(function(err){
-        if(err){
-            res.json({"status":"error"})
-        }else{
-            res.json({"status":"success"});
-        }
-    });
+
+
 };
 // 分页获取工程案例
 exports.get_Ens = function(req, res) {
@@ -153,9 +170,97 @@ exports.get_Ens = function(req, res) {
 };
 //获取工程案例详情
 exports.get_Ens_detail = function(req, res) {
-
     var id=req.body.id;
     Ens.findOne({_id:id},function(err,doc){
+        if(err){
+            res.json({"status":"error"});
+        }else{
+            res.json({"status":"success","data":doc})
+        }
+    });
+};
+//删除一个工程案例
+exports.Ens_del_one= function(req, res) {
+    var id=req.body.id;
+    Ens.remove({_id:id},function(err,doc){
+        if(err){
+            res.json({"status":"error"});
+        }else{
+            res.json({"status":"success"})
+        }
+    });
+
+};
+
+// 添加产品
+exports.add_Prs = function(req, res) {
+    var title = req.body.title;
+    var time = req.body.time;
+    var headimg = req.body.headimg;
+    var content = req.body.content;
+    var d = Date.now();
+    var path = 'public/web/images/up/'+ d +'.png';    //从app.js级开始找
+    var name = '/web/images/up/'+ d +'.png';    //从app.js级开始找
+    var base64 = headimg.replace(/^data:image\/\w+;base64,/, "");//去掉图片base64码前面部分data:image/png;base64
+    var dataBuffer = new Buffer(base64, 'base64'); //把base64码转成buffer对象，
+    fs.writeFile(path,dataBuffer,function(err){//用fs写入文件
+        if(err){
+            console.log(err);
+            res.json({"status":"error"})
+        }else{
+            data.save(function(err){
+                if(err){
+                    res.json({"status":"error"})
+                }else{
+                    res.json({"status":"success"});
+                }
+            });
+        }
+    })
+
+    var data=new Prs(
+        {
+            title:title,
+            time:time,
+            headimg: name,
+            content:content
+        }
+    );
+
+
+};
+// 分页获取产品
+exports.get_Prs = function(req, res) {
+    var curr=req.body.curr;
+    //每页大小为10
+    var query=Prs.find({});
+    query.skip((curr-1)*10);
+    query.limit(10);
+    //按照id添加的顺序倒序排列
+    query.sort({'_id': -1});
+    //计算分页数据
+    query.exec(function(err,rs){
+        if(err){
+            res.send(err);
+        }else{
+            //计算数据总数
+            Prs.find(function(err,result){
+                if(result.length%10>0){
+                    pages=result.length/10+1;
+                }else{
+                    pages=result.length/10;
+                }
+                jsonArray={data:rs,pages:pages};
+                res.json(jsonArray);
+            });
+        }
+    });
+};
+//获取产品详情
+exports.get_Prs_detail = function(req, res) {
+
+    var id=req.body.id;
+    Prs.findOne({_id:id},function(err,doc){
         if(err){
             res.json({"status":"error"});
         }else{
@@ -163,10 +268,10 @@ exports.get_Ens_detail = function(req, res) {
         }
     });
 };
-//删除一个工程案例
-exports.del_one= function(req, res) {
+//删除一个产品
+exports.Prs_del_one= function(req, res) {
     var id=req.body.id;
-    News.remove({_id:id},function(err,doc){
+    Prs.remove({_id:id},function(err,doc){
         if(err){
             res.json({"status":"error"});
         }else{
@@ -328,8 +433,7 @@ exports.checkUser = function(req, res) {
     var username=req.body.username;
     var password=req.body.password;
     var captcha=req.body.captcha;
-
-    if(captcha!=req.session.captcha){
+    if(captcha.toLowerCase()!=req.session.captcha.toLowerCase()){
         console.log('captcha error');
         res.json({'status':'captcha error'});
     }else{ //验证码正确

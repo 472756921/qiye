@@ -9,6 +9,7 @@ module.exports=function(){
     require('../model/user.js');
     require('../model/news.js');
     require('../model/ens.js');
+    require('../model/prs.js');
     require('../model/recruit.js');
     require('../model/quit.js');
     require('../model/feedback.js');

@@ -4,17 +4,13 @@
     <img src="http://localhost:3000/web/images/enb.png" style="width: 100%;min-height: 150px" >
 </div><!--/#about-slider-->
     <div class="pls">
-        <div class="row" style="margin: 3rem 0">
-            <div class="col-md-4" style="padding: 3rem;" >
-                <div class="enlistContent" data-toggle="modal" data-target="#myModal">
-                    <img src="http://iph.href.lu/300x300" style="width: 100%;"/>
-                    <div style="color:#666;padding: 1rem 2rem;font-size: 16px" class="enlistContent-title">
-                        【太阳能庭院灯款式2】3.5米太阳能庭院灯景区园区景观灯
-                    </div>
-                    <div style="padding:1rem 2rem;color:#999;">施工地点：成都那个地方3号</div>
-                </div>
-            </div>
+        <div class="row" style="margin: 3rem 0" id="enlistc">
+
         </div>
+
+        <div class="admin-table-page">
+            <div id="page" class="page">
+            </div>
         </div>
     </div>
 
@@ -27,20 +23,17 @@
             </div>
             <div class="modal-body">
                 <div class="row">
-                    <div class="col-md-6"><img style="width: 100%;" src="http://iph.href.lu/300x260"/></div>
-                    <div class="col-md-6" style="font-size: 18px;color:#666;padding: 2rem 0">【太阳能庭院灯款式2】3.5米太阳能庭院灯景区园区景观灯</div>
+                    <div class="col-md-6" id="enImgContent"><img style="width: 100%;" src="http://iph.href.lu/100x260"/></div>
+                    <div class="col-md-6" style="font-size: 18px;color:#666;padding: 2rem 0" id="enTitle">【太阳能庭院灯款式2】3.5米太阳能庭院灯景区园区景观灯</div>
+                </div>
+                <br/>
+                <div style="font-size: 14px; color: #999;">
+                    <div id="sp" class="pull-left"> 地址：gaox</div>
+                    <div id="date" class="pull-right">时间：2012-12-12</div>
                 </div>
                 <br/>
                 <br/>
-                <div class="prtext">
-                    <p>	太阳能庭院灯采用单晶硅或多晶硅制作的太阳能电池板、支架、灯杆、灯头、专用灯泡、蓄电池、电瓶箱、
-                        地笼等组成。
-                        灯头造型多姿多彩、五彩缤纷、别致典雅，可以把庭院、公园、游乐场等装扮的如诗如画。该产品每充足
-                        灯头造型多姿多彩、五彩缤纷、别致典雅，可以把庭院、公园、游乐场等装扮的如诗如画。该产品每充足
-                        灯头造型多姿多彩、五彩缤纷、别致典雅，可以把庭院、公园、游乐场等装扮的如诗如画。该产品每充足
-                        灯头造型多姿多彩、五彩缤纷、别致典雅，可以把庭院、公园、游乐场等装扮的如诗如画。该产品每充足
-                        一次电可连续照明7-15天左右，每天工作6到10小时，也可按照用户的特殊要求设计定制。</p>
-                </div>
+                <div class="prtext" id="enContent"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
@@ -49,7 +42,89 @@
     </div>
 </div>
 
-
-<%include ../common/include_footer.html%>
+<script type="text/javascript" src="admin/plugins/layui/layui.js"></script>
 <script>
+
+    var listData = '';
+    layui.config({
+        base: 'admin/plugins/layui/modules/'
+    });
+
+    layui.use(['icheck', 'laypage','layer'], function() {
+        var $ = layui.jquery,
+            laypage = layui.laypage,
+            layer = parent.layer === undefined ? layui.layer : parent.layer;
+
+
+        //页面初始化的时候执行
+        $(function (){
+            getData(1);
+        });
+
+        //从后台获取数据函数，获取页数curr的数据
+        function getData(curr){
+            $.post("/admin/get_Ens",{curr:curr},function(result){
+                //拼接html内容
+                var tabContent="";
+                //获取后台json数据
+                var mydata=result.data;
+                listData = mydata;
+                for(var i=0;i<mydata.length;i++){
+                    if(mydata[i].category==='0'){
+                        category='<span class="layui-btn layui-btn-primary layui-btn-mini">公司动态</span>';
+                    }else{
+                        category='<span class="layui-btn layui-btn-primary layui-btn-mini">媒体报道</span>';
+                    }
+
+                    var tempStr=
+                        '<div class="col-md-3" style="padding: 3rem 1rem;" >' +
+                            '<div class="enlistContent" data-toggle="modal" data-target="#myModal" onclick=getInof("'+mydata[i]._id+'")>' +
+                                '<img src="'+mydata[i].headimg+'" style="width: 100%;"/>' +
+                                '<div style="color:#666;padding: 1rem 2rem;font-size: 16px" class="enlistContent-title">' + mydata[i].title +
+                                '</div>'+
+                                '<div style="padding:1rem 2rem;color:#999;">'+mydata[i].sgsp+'</div>'+
+                            '</div>'+
+                        '</div>'
+                    tabContent=tabContent+tempStr;
+                }
+                //将拼接好的数据填入#tabContent中
+                $("#enlistc").html(tabContent);
+                //显示分页
+                laypage({
+                    cont: 'page', //容器。值支持id名、原生dom对象，jquery对象。【如该容器为】：<div id="page1"></div>
+                    pages: result.pages, //通过后台拿到的总页数
+                    curr: curr || 1, //当前页
+                    jump: function(obj, first){ //触发分页后的回调
+                        if(!first){ //点击跳页触发函数自身，并传递当前页：obj.curr
+                            getData(obj.curr);
+                        }
+                    }
+                });
+
+            });
+        };
+
+    });
+
+    function getInof(id){
+        var data = listData.filter(function(_){
+            if(_._id == id) {
+                return _;
+            } else {
+                return
+            }
+        })
+        $('#enImgContent').html("<img width='100%' src='"+data[0].headimg+"' />");
+        $('#enTitle').html(data[0].title);
+        $('#sp').html(data[0].sgsp);
+        $('#date').html(data[0].time);
+        $('#enContent').html(data[0].content);
+    }
+
 </script>
+<style>
+    .layui-laypage{
+        float: right;
+    }
+</style>
+<%include ../common/include_footer.html%>

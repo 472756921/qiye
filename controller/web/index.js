@@ -10,6 +10,7 @@ var Quit =mongoose.model('Quit');
 var Feedback=mongoose.model('Feedback');
 
 var Ens =mongoose.model('Ens');
+var Prs =mongoose.model('Prs');
 /*处理时间*/
 var Moment = require('moment');
 
@@ -83,6 +84,45 @@ exports.en = function(req, res) {
     res.render('website/en/en');
 };
 
+
+// 首页获取4条案例
+exports.get_Ens= function(req, res) {
+    //获取新闻处理逻辑
+    Ens.find().sort('-_id').limit(4).exec(function(err,datas){
+        if(err){
+            console.log('获取数据失败');
+            var data={
+                status: 'failed',
+            };
+            res.json(data);
+        }else{
+            var data={
+                status: 'success',
+                datas: datas
+            };
+            res.json(data);
+        }
+    });
+};
+// 首页获取4条产品
+exports.get_Prs= function(req, res) {
+    //获取新闻处理逻辑
+    Prs.find().sort('-_id').limit(4).exec(function(err,datas){
+        if(err){
+            console.log('获取数据失败');
+            var data={
+                status: 'failed',
+            };
+            res.json(data);
+        }else{
+            var data={
+                status: 'success',
+                datas: datas
+            };
+            res.json(data);
+        }
+    });
+};
 
 // 首页获取6条新闻
 exports.get_news= function(req, res) {

@@ -39,6 +39,10 @@ module.exports = function(app) {
   //联系我们
   app.get('/contact_us', Index.contact_us);
 
+  //首页案例
+  app.get('/web/get_Ens', Index.get_Ens);
+  //首页产品
+  app.get('/web/get_Prs', Index.get_Prs);
   //首页获取新闻
   app.get('/web/get_news', Index.get_news);
   //首页获取招聘信息

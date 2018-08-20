@@ -8,7 +8,6 @@ var  newsschema=new mongoose.Schema({
     content:String,
     headimg: String,
     time:String,
-    sgsp:String,
 });
 
-mongoose.model('Ens',newsschema);
+mongoose.model('Prs',newsschema);

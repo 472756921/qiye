@@ -29,6 +29,15 @@ module.exports = function(app) {
   //删除工程案例
   app.post('/admin/Ens_del', Admin.del_one);
 
+  //添加产品
+  app.post('/admin/add_Prs', Admin.add_Prs);
+  //分页获取产品
+  app.post('/admin/get_Prs', Admin.get_Prs);
+  //查看产品详情
+  app.post('/admin/Prs_contPrt', Admin.get_Prs_detail);
+  //删除产品
+  app.post('/admin/Prs_del', Admin.del_one);
+
   //添加招聘
   app.post('/admin/add_recruit', Admin.add_recruit);
   //获取招聘信息

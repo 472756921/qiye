@@ -2594,6 +2594,7 @@ shortcodes page css
     margin:1.125rem;
     background: #fafafa;
     cursor: pointer;
+    overflow: hidden;
 }
 .enlist:hover{
     background: #cc3333;

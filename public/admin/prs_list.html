@@ -27,10 +27,9 @@
 					<tr>
 						<th>序号</th>
 						<th>标题</th>
-						<th>来源</th>
+						<th>图片</th>
 						<th>日期</th>
 						<th>查看内容</th>
-						<th>类别</th>
 						<th>操作</th>
 					</tr>
 					</thead>
@@ -73,7 +72,7 @@
 			$('#tabContent').on('click', '.layui-btn-normal', function() {
 				var obj = $(this);
 				var id = obj.parents('tr').attr('id');
-				$.post("/admin/news_content",{id:id},function(result){
+				$.post("/admin/Prs_content",{id:id},function(result){
 					if(result.status==="success"){
 						var content=result.data;
 						//驾驶证信息弹窗
@@ -105,7 +104,7 @@
 					shade: false
 				}, function(index) {
 
-					$.post("/admin/news_del",{id:id},function(result){
+					$.post("/admin/Prs_del",{id:id},function(result){
 						if(result.status==="success"){
 							$(obj).parents("tr").remove(); //删除方法
 							layer.msg('已删除!', {
@@ -126,7 +125,7 @@
 
 			//从后台获取数据函数，获取页数curr的数据
 			function getData(curr){
-				$.post("/admin/get_news",{curr:curr},function(result){
+				$.post("/admin/get_Prs",{curr:curr},function(result){
 					//拼接html内容
 					var tabContent="";
 					//获取后台json数据
@@ -144,13 +143,10 @@
 									/*序号分页后也必须得变动,每页十条数据*/
 								'<td>'+(i+(curr-1)*10+1)+'</td>'+
 								'<td>'+mydata[i].title+'</td>'+
-								'<td>'+mydata[i].from+'</td>'+
+								'<td><img width="70px" src="'+mydata[i].headimg+'"/></td>'+
 								'<td>'+mydata[i].time+'</td>'+
 								'<td>'+
 								'<span class="layui-btn layui-btn-normal layui-btn-mini">查看内容</span>'+
-								'</td>'+
-								'<td>'+
-								category+
 								'</td>'+
 								'<td>'+
 								'<span class="layui-btn layui-btn-danger layui-btn-mini">删除</span>'+
