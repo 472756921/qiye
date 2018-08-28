@@ -542,7 +542,7 @@ input.search-form:hover {
 #feature {
  /* background: #f2f2f2;*/
   background: #ffffff;
-  background: url("http://localhost:3000/web/images/peb.png");
+  background: url("http://118.31.38.219:3000/web/images/peb.png");
   padding-bottom: 40px;
 }
 
@@ -676,7 +676,7 @@ input.search-form:hover {
   padding: 2.6rem 4rem;
   background:rgba(255,255,255, 0.2);
   border-radius: 1rem;
-  width: 900px;
+  /*width: 900px;*/
   color: #fff;
   margin: 0 auto;
 }
@@ -685,7 +685,7 @@ input.search-form:hover {
   text-indent: 2.6rem;
 }
 #services {
-  background: #000 url(http://localhost:3000/web/images/abb.png);
+  background: #000 url(http://118.31.38.219:3000/web/images/abb.png);
   background-size: cover;
 }
 
@@ -2589,7 +2589,7 @@ shortcodes page css
 }
 .enlist{
     width: 220px;
-    height:300px;
+    height:308px;
     float:left;
     margin:1.125rem;
     background: #fafafa;
@@ -2602,7 +2602,8 @@ shortcodes page css
 }
 .prlist{
     width: 220px;
-    height:235px;
+    height: 330px;
+    overflow: hidden;
     float:left;
     margin:1.125rem;
     background: #fafafa;
@@ -2628,6 +2629,10 @@ shortcodes page css
 .prtext{
   color: #999;
   text-indent: 2.6rem;
+}
+.prtext img {
+  width: 100%;
+  display: inherit;
 }
 .enlistContent{
   background: #eeeeee;border-radius: .6rem;overflow:hidden;

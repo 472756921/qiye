@@ -11,6 +11,7 @@ var Feedback=mongoose.model('Feedback');
 
 var Ens =mongoose.model('Ens');
 var Prs =mongoose.model('Prs');
+var ABU =mongoose.model('ABU');
 /*处理时间*/
 var Moment = require('moment');
 
@@ -18,6 +19,18 @@ var Moment = require('moment');
 exports.index = function(req, res) {
     res.render('website/index/index');
 };
+
+// 查询关于我们
+exports.find_about = function(req, res) {
+    ABU.find(function(err,doc){
+        if(err){
+            res.json({"status":"error"});
+        }else{
+            res.json({"status":"success","data":doc})
+        }
+    });
+};
+
 // 走进车协
 exports.company_intro = function(req, res) {
     res.render('website/company/company_intro');

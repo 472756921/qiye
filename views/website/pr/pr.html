@@ -1,7 +1,7 @@
 <%include ../common/include_header.html%>
 <!-- about us slider -->
 <div id="about-slider">
-    <img src="http://localhost:3000/web/images/prb.png" style="width: 100%;min-height: 150px" >
+    <img src="http://118.31.38.219:3000/web/images/prb.png" style="width: 100%;min-height: 150px" >
 </div><!--/#about-slider-->
     <div class="pls">
         <div class="row" style="margin: 3rem 0" id="prList">
@@ -74,7 +74,7 @@
                     }
 
                     var tempStr=
-                '<div class="col-md-4"><img src="http://iph.href.lu/300x260"style="width: 100%;"/></div><div class="col-md-8"><h3 style="color:#666;cursor: pointer"data-toggle="modal"data-target="#myModal" onclick=getInof("'+mydata[i]._id+'")>'+mydata[i].title+'</h3><div style="color: #999999;overflow: hidden;height: 190px"class="prtext">'+mydata[i].content+'</div></div>'
+                '<div class="col-md-4"><img src="'+mydata[i].headimg+'" style="width: 100%;"/></div><div class="col-md-8"><h3 style="color:#666;cursor: pointer"data-toggle="modal"data-target="#myModal" onclick=getInof("'+mydata[i]._id+'")>'+mydata[i].title+'</h3><div style="color: #999999;overflow: hidden;height: 190px"class="prtext">'+mydata[i].content+'</div></div>'
                     tabContent=tabContent+tempStr;
                 }
                 //将拼接好的数据填入#tabContent中

@@ -39,6 +39,8 @@ module.exports = function(app) {
   //联系我们
   app.get('/contact_us', Index.contact_us);
 
+  //查询关于我们
+  app.get('/web/find_about', Index.find_about);
   //首页案例
   app.get('/web/get_Ens', Index.get_Ens);
   //首页产品

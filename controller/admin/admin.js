@@ -15,6 +15,7 @@ var Feedback=mongoose.model('Feedback');
 
 var Ens =mongoose.model('Ens');
 var Prs =mongoose.model('Prs');
+var ABU =mongoose.model('ABU');
 
 // 首页
 exports.admin = function(req, res) {
@@ -24,6 +25,28 @@ exports.admin = function(req, res) {
     }
     res.render('admin/index',{username:req.session.user.username,isSuper:isSuper});
 };
+// 添加关于我们
+exports.add_about = function(req, res) {
+    var content=req.body.content;
+    ABU.update({'_id':'5b7f7888824089226c4d72aa'}, {$set:{"content":content}},function(err){
+        if(err){
+            res.json({"status":"error"})
+        }else{
+            res.json({"status":"success"});
+        }
+    });
+};
+// 查询关于我们
+exports.find_about = function(req, res) {
+    ABU.find(function(err,doc){
+        if(err){
+            res.json({"status":"error"});
+        }else{
+            res.json({"status":"success","data":doc})
+        }
+    });
+};
+
 // 添加新闻
 exports.add_news = function(req, res) {
     var title=req.body.title;
@@ -49,7 +72,6 @@ exports.add_news = function(req, res) {
         }
     });
 };
-
 // 分页获取新闻
 exports.get_news = function(req, res) {
     var curr=req.body.curr;
@@ -258,7 +280,6 @@ exports.get_Prs = function(req, res) {
 };
 //获取产品详情
 exports.get_Prs_detail = function(req, res) {
-
     var id=req.body.id;
     Prs.findOne({_id:id},function(err,doc){
         if(err){

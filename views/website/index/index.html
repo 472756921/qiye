@@ -12,13 +12,13 @@
 
             <!--<div class="carousel-inner">-->
                 <!--<div class="item active">-->
-                    <!--<img src="http://localhost:3000/web/images/index3.jpg" class="img-responsive" alt="" style="min-height: 200px">-->
+                    <!--<img src="http://118.31.38.219:3000/web/images/index3.jpg" class="img-responsive" alt="" style="min-height: 200px">-->
                 <!--</div>-->
                 <!--<div class="item">-->
-                    <!--<img src="http://localhost:3000/web/images/index4.jpg" class="img-responsive" alt="" style="min-height: 200px">-->
+                    <!--<img src="http://118.31.38.219:3000/web/images/index4.jpg" class="img-responsive" alt="" style="min-height: 200px">-->
                 <!--</div>-->
                 <!--<div class="item">-->
-                    <!--<img src="http://localhost:3000/web/images/index5.jpg" class="img-responsive" alt="" style="min-height: 200px">-->
+                    <!--<img src="http://118.31.38.219:3000/web/images/index5.jpg" class="img-responsive" alt="" style="min-height: 200px">-->
                 <!--</div>-->
             <!--</div>-->
 
@@ -30,7 +30,7 @@
                 <!--<i class="fa fa-angle-right"></i>-->
             <!--</a>-->
         <!--</div> &lt;!&ndash;/#carousel-slider&ndash;&gt;-->
-        <img src="http://localhost:3000/web/images/indexMian.png" width="100%"/>
+        <img src="http://118.31.38.219:3000/web/images/indexMian.png" width="100%"/>
     </div><!--/#about-slider-->
 
     <section id="feature" >
@@ -238,7 +238,7 @@
     </div>
 </div>
 <%include ../common/include_footer.html%>
-<script type="text/javascript" src="http://localhost:3000/web/layui/layui.js"></script>
+<script type="text/javascript" src="http://118.31.38.219:3000/web/layui/layui.js"></script>
 <!--jquery修改首页导航样式-->
 <script>
 
@@ -258,6 +258,7 @@
             $("#main a").css("color","#cc3333");
             getEns();
             getPrs();
+            find_about();
             // getNews();
             // getRecruits();
             // getQuits();
@@ -364,8 +365,8 @@
                 for(var i=0;i<mydata.length;i++){
                     var content = $(mydata[i].content).text();
                     var tempStr=
-                        '<div class="enlist" id='+mydata[i]._id+' data-toggle="modal" data-target="#myModal" onclick=getInof2("'+mydata[i]._id+'")>'+
-                            '<img src="'+mydata[i].headimg+'" style="width: 220px"/>'+
+                        '<div class="prlist" id='+mydata[i]._id+' data-toggle="modal" data-target="#myModal" onclick=getInof2("'+mydata[i]._id+'")>'+
+                            '<img src="'+mydata[i].headimg+'" style="width: 220px;margin-top: 1rem"/>'+
                             '<div style="padding: 1rem;background-color: #FAFAFA;">' +
                                 '<a style="font-size: 16px" href="/news_detail/'+mydata[i]._id+'" class="a_color">'+mydata[i].title+'</a>' +
                                 '<div class="listTxt">'+content+'</div>' +
@@ -406,6 +407,11 @@
         $('#sp').html(' ');
         $('#date').html(' ');
         $('#enContent').html(data[0].content);
+    }
+    function find_about(id){
+        $.get("web/find_about",function(result){
+            $('.aboutBkC').html(result.data[0].content);
+        });
     }
 
 </script>

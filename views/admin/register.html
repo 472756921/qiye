@@ -18,7 +18,6 @@
 	<body>
 	<div style="margin-top: 200px">
 		<div style="text-align: center;">
-			<a href="#"><img src="admin/images/admin_logo.png" /></a>
 		</div>
 		<br>
 
@@ -60,7 +59,7 @@
 						<label class="layui-form-label">验证码</label>
 						<div class="layui-input-block">
 							<!--图片验证码，点击图片实现刷新-->
-							<img src="http://localhost:3000/captcha"  style="float: right;width: 40%;height: 38px;cursor:pointer" onclick="this.src='http://localhost:3000/captcha?d='+Math.random();">
+							<img src="http://118.31.38.219:3000/captcha"  style="float: right;width: 40%;height: 38px;cursor:pointer" onclick="this.src='http://118.31.38.219:3000/captcha?d='+Math.random();">
 							<input type="text" name="captcha" id="captcha" style="width: 60%" autocomplete="off" placeholder="请输入验证码" class="layui-input">
 						</div>
 
@@ -111,7 +110,7 @@
 						layer.alert('请将信息填写完整', {icon: 2});
 						return false;
 					}
-					$.post("http://localhost:3000/register",{username:username,password:password,captcha:captcha,phone:phone,realname:realname},function(result){
+					$.post("http://118.31.38.219:3000/register",{username:username,password:password,captcha:captcha,phone:phone,realname:realname},function(result){
 						if(result.status==="captcha error"){
 							layer.alert('验证码错误。点击图片刷新', {icon: 2});
 						}else if(result.status==="error"){

@@ -34,9 +34,14 @@ module.exports = function(app) {
   //分页获取产品
   app.post('/admin/get_Prs', Admin.get_Prs);
   //查看产品详情
-  app.post('/admin/Prs_contPrt', Admin.get_Prs_detail);
+  app.post('/admin/Prs_content', Admin.get_Prs_detail);
   //删除产品
   app.post('/admin/Prs_del', Admin.del_one);
+
+  //添加关于我们
+  app.post('/admin/add_abuous', Admin.add_about);
+  //查询关于我们
+  app.post('/admin/find_about', Admin.find_about);
 
   //添加招聘
   app.post('/admin/add_recruit', Admin.add_recruit);

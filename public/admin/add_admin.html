@@ -4,8 +4,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title></title>
-	<link rel="stylesheet" href="http://localhost:3000/admin/plugins/layui/css/layui.css" media="all" />
-	<link rel="stylesheet" href="http://localhost:3000/admin/css/main.css" />
+	<link rel="stylesheet" href="http://118.31.38.219:3000/admin/plugins/layui/css/layui.css" media="all" />
+	<link rel="stylesheet" href="http://118.31.38.219:3000/admin/css/main.css" />
 
 </head>
 
@@ -53,7 +53,7 @@
 		</div>
 	</form>
 </div>
-<script type="text/javascript" src="http://localhost:3000/admin/plugins/layui/layui.js"></script>
+<script type="text/javascript" src="http://118.31.38.219:3000/admin/plugins/layui/layui.js"></script>
 <script>
 	layui.use(['form', 'laydate','upload'], function() {
 		var form = layui.form(),
@@ -74,7 +74,7 @@
 				layer.alert('请填入相关信息', {icon: 2});
 				return;
 			}
-			$.post("http://localhost:3000/admin/post_user",{username:username,password:password,realname:realname,phone:phone},function(result){
+			$.post("http://118.31.38.219:3000/admin/post_user",{username:username,password:password,realname:realname,phone:phone},function(result){
 				if(result.status==="success"){
 					layer.alert('添加成功,请在离职管理员列表查看。', {icon: 1});
 				}else if(result.status==="noRight"){

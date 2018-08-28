@@ -49,6 +49,16 @@ var navs = [
 	// 		"href": "add_quit_notice.html"
 	// 	}]
 	// },
+    {
+        "title": "关于我们",
+        "icon": "&#x1002;",
+        "spread": true,
+        "children": [{
+            "title": "关于我们",
+            "icon": "fa-check-square-o",
+            "href": "aboutUs.html"
+        }]
+    },
 	{
         "title": "案例管理",
         "icon": "&#x1002;",
