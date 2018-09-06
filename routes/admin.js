@@ -27,7 +27,7 @@ module.exports = function(app) {
   //查看工程案例详情
   app.post('/admin/Ens_content', Admin.get_Ens_detail);
   //删除工程案例
-  app.post('/admin/Ens_del', Admin.del_one);
+  app.post('/admin/Ens_del', Admin.Ens_del_one);
 
   //添加产品
   app.post('/admin/add_Prs', Admin.add_Prs);
@@ -36,7 +36,7 @@ module.exports = function(app) {
   //查看产品详情
   app.post('/admin/Prs_content', Admin.get_Prs_detail);
   //删除产品
-  app.post('/admin/Prs_del', Admin.del_one);
+  app.post('/admin/Prs_del', Admin.Prs_del_one);
 
   //添加关于我们
   app.post('/admin/add_abuous', Admin.add_about);

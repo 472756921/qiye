@@ -132,18 +132,18 @@ exports.add_Ens = function(req, res) {
     var headimg = req.body.headimg;
     var content = req.body.content;
     var d = Date.now();
-    var path = 'public/web/images/up/'+ d +'.png';    //从app.js级开始找
+    var path = '/alidata/zm/public/web/images/up/'+ d +'.png';    //从app.js级开始找
     var name = '/web/images/up/'+ d +'.png';    //从app.js级开始找
     var base64 = headimg.replace(/^data:image\/\w+;base64,/, "");//去掉图片base64码前面部分data:image/png;base64
     var dataBuffer = new Buffer(base64, 'base64'); //把base64码转成buffer对象，
     fs.writeFile(path,dataBuffer,function(err){//用fs写入文件
         if(err){
             console.log(err);
-            res.json({"status":"error"})
+            res.json({"status":"error_write", mgs: err});
         }else{
             data.save(function(err){
                 if(err){
-                    res.json({"status":"error"})
+                    res.json({"status":"error_save", mgs: err});
                 }else{
                     res.json({"status":"success"});
                 }
@@ -206,9 +206,9 @@ exports.Ens_del_one= function(req, res) {
     var id=req.body.id;
     Ens.remove({_id:id},function(err,doc){
         if(err){
-            res.json({"status":"error"});
+            res.json({"status":"error", err: err});
         }else{
-            res.json({"status":"success"})
+            res.json({"status":"success", err: err})
         }
     });
 
@@ -221,18 +221,18 @@ exports.add_Prs = function(req, res) {
     var headimg = req.body.headimg;
     var content = req.body.content;
     var d = Date.now();
-    var path = 'public/web/images/up/'+ d +'.png';    //从app.js级开始找
+    var path = '/alidata/zm/public/web/images/up/'+ d +'.png';    //从app.js级开始找
     var name = '/web/images/up/'+ d +'.png';    //从app.js级开始找
     var base64 = headimg.replace(/^data:image\/\w+;base64,/, "");//去掉图片base64码前面部分data:image/png;base64
     var dataBuffer = new Buffer(base64, 'base64'); //把base64码转成buffer对象，
     fs.writeFile(path,dataBuffer,function(err){//用fs写入文件
         if(err){
             console.log(err);
-            res.json({"status":"error"})
+            res.json({"status":"error_write", mgs: err});
         }else{
             data.save(function(err){
                 if(err){
-                    res.json({"status":"error"})
+                    res.json({"status":"error_save", mgs: err});
                 }else{
                     res.json({"status":"success"});
                 }
@@ -294,9 +294,9 @@ exports.Prs_del_one= function(req, res) {
     var id=req.body.id;
     Prs.remove({_id:id},function(err,doc){
         if(err){
-            res.json({"status":"error"});
+            res.json({"status":"error", err: err});
         }else{
-            res.json({"status":"success"})
+            res.json({"status":"success", err: err})
         }
     });
 

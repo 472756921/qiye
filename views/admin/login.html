@@ -98,7 +98,7 @@
 						return false;
 					}
 					$.post("http://118.31.38.219:3000/login",{username:username,password:password,captcha:captcha},function(result){
-						if(result.status==="captcha error"){
+                        if(result.status==="captcha error"){
 							layer.alert('验证码错误', {icon: 2});
 						}else if(result.status==="error"){
 							layer.alert('系统错误', {icon: 2});

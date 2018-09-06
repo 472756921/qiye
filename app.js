@@ -14,7 +14,6 @@ var app = express();
 var mongoose=require('./config/mongoose.js');
 var db=mongoose();
 
-
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.engine('.html', require('ejs').__express);
@@ -40,7 +39,14 @@ app.use(session({//session持久化配置
   saveUninitialized: true,
   resave: false,
 }));
-
+app.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1')
+    if(req.method=="OPTIONS") res.send(200);/*让options请求快速返回*/
+    else  next();
+});
 //ueditor上传图片
 app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, res, next) {
   // ueditor 客户发起上传图片请求
@@ -113,8 +119,7 @@ app.use(function(req, res, next) {
 // will print stacktrace
 if (app.get('env') === 'development') {
   app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('·site/index/error', {
+    res.render('website/index/error', {
       message: err.message,
       error: err
     });
